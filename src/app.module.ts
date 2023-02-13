@@ -1,13 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typerOrmConfig } from './config/typeorm.config';
-import { TasksController } from './tasks/tasks.controller';
 import { TasksModule } from './tasks/tasks.module';
-import { TasksService } from './tasks/tasks.service';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typerOrmConfig), TasksModule],
-  controllers: [TasksController],
-  providers: [TasksService],
+  imports: [TasksModule, TypeOrmModule.forRoot(typerOrmConfig)],
 })
 export class AppModule {}
