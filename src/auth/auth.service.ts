@@ -11,9 +11,11 @@ import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt-payload.interface';
+import { Logger } from '@nestjs/common/services';
 
 @Injectable()
 export class AuthService {
+  private logger = new Logger(`AuthService`);
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
@@ -61,6 +63,9 @@ export class AuthService {
     }
     const payload: JwtPayload = { username: user };
     const accesstoken = await this.jwtService.sign(payload);
+    this.logger.debug(
+      `Generated JWT Token with payload ${JSON.stringify(payload)}`,
+    );
     return { accesstoken };
   }
 }
