@@ -48,7 +48,10 @@ export class AuthService {
         username: authCredentialsDto.username,
       },
     });
-    if (user && (await user.validatePassword(authCredentialsDto.password))) {
+    const userPassword = await user.validatePassword(
+      authCredentialsDto.password,
+    );
+    if (user && userPassword) {
       return user.username;
     } else {
       return null;

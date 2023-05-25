@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException, Query } from '@nestjs/common';
 import { InternalServerErrorException } from '@nestjs/common/exceptions';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/auth/user.entity';
+import { User } from '../auth/user.entity';
 import { Repository } from 'typeorm';
 import { CreatTaskDto } from './dto/create-task.dto';
 import { GetTaskFilterDto } from './dto/get-task-filter.dto';
